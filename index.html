@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>শ্রীকামতা ইনসাফ যুব সংঘ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green-900:#0b3d2e;
+    --green-800:#0f5c40;
+    --green-700:#146b4b;
+    --green-100:#e7f3ec;
+    --gold:#d9a441;
+    --gold-dark:#b8802a;
+    --cream:#faf8f3;
+    --ink:#16241d;
+    --ink-soft:#4a5c52;
+    --line:#dce6df;
+    --white:#ffffff;
+    --radius:10px;
+    --shadow:0 2px 10px rgba(11,61,46,0.08);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Hind Siliguri', sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.6;
+  }
+  h1,h2,h3,h4{
+    font-family:'Noto Serif Bengali', serif;
+    margin:0 0 8px 0;
+    color:var(--green-900);
+  }
+  a{color:inherit; text-decoration:none;}
+  button{font-family:inherit; cursor:pointer;}
+  img{max-width:100%; display:block;}
+ 
+  /* ---------- Top info bar ---------- */
+  .topbar{
+    background:var(--green-900);
+    color:#cfe6da;
+    font-size:0.85rem;
+    padding:6px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:6px;
+  }
+  .topbar .status{display:flex; align-items:center; gap:6px;}
+  .dot{width:7px; height:7px; border-radius:50%; background:#5fd68f; display:inline-block;}
+  .topbar a{color:#fff; font-weight:600;}
+ 
+  /* ---------- Header / nav ---------- */
+  header.site{
+    background:var(--white);
+    border-bottom:1px solid var(--line);
+    position:sticky; top:0; z-index:50;
+  }
+  .header-inner{
+    max-width:1200px; margin:0 auto;
+    display:flex; align-items:center; gap:22px;
+    padding:12px 20px;
+  }
+  .brand{display:flex; align-items:center; gap:12px; flex-shrink:0;}
+  .brand-mark{
+    width:46px; height:46px; border-radius:50%;
+    background:linear-gradient(160deg, var(--green-700), var(--green-900));
+    color:var(--gold);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Noto Serif Bengali', serif; font-weight:700; font-size:1.15rem;
+    border:2px solid var(--gold);
+  }
+  .brand-text h1{font-size:1.15rem; line-height:1.25; margin:0;}
+  .brand-text p{margin:2px 0 0; font-size:0.75rem; color:var(--ink-soft);}
+ 
+  nav.tabs{
+    display:flex; align-items:center; gap:4px;
+    flex-wrap:wrap; flex:1;
+  }
+  nav.tabs button{
+    background:none; border:none;
+    padding:10px 14px;
+    font-size:0.92rem; font-weight:500;
+    color:var(--ink-soft);
+    border-radius:8px;
+    display:flex; align-items:center; gap:6px;
+    white-space:nowrap;
+  }
+  nav.tabs button:hover{background:var(--green-100); color:var(--green-900);}
+  nav.tabs button.active{background:var(--green-100); color:var(--green-900); font-weight:700;}
+  .badge-live{
+    background:#e34c4c; color:#fff; font-size:0.62rem; font-weight:700;
+    padding:1px 6px; border-radius:20px; letter-spacing:0.3px;
+  }
+  .cta-report{
+    background:var(--green-800) !important; color:#fff !important;
+    padding:10px 18px !important; border-radius:8px !important;
+    font-weight:700 !important;
+  }
+  .cta-report:hover{background:var(--green-900) !important;}
+ 
+  /* mobile nav toggle */
+  .nav-toggle{display:none; background:none; border:1px solid var(--line); border-radius:8px; padding:8px 10px;}
+ 
+  /* ---------- Sections ---------- */
+  main{max-width:1200px; margin:0 auto; padding:26px 20px 60px;}
+  .view{display:none;}
+  .view.active{display:block;}
+ 
+  .eyebrow-pill{
+    display:inline-flex; align-items:center; gap:6px;
+    background:var(--green-100); color:var(--green-800);
+    padding:6px 14px; border-radius:20px; font-size:0.85rem; font-weight:600;
+  }
+  .section-head{text-align:center; margin-bottom:28px;}
+  .section-head .eyebrow-pill{margin-bottom:14px;}
+  .section-head h2{font-size:1.7rem;}
+  .section-head p{color:var(--ink-soft); max-width:640px; margin:8px auto 0;}
+ 
+  /* ---------- Hero ---------- */
+  .hero{
+    background:linear-gradient(150deg, var(--green-900) 0%, var(--green-700) 100%);
+    border-radius:16px;
+    padding:38px;
+    color:#eef6f0;
+    display:grid;
+    grid-template-columns:1.35fr 1fr;
+    gap:30px;
+    margin-bottom:28px;
+  }
+  .hero .eyebrow-pill{background:rgba(255,255,255,0.12); color:#fce8bf;}
+  .hero h2{
+    color:#fff; font-size:2.15rem; line-height:1.3; margin:14px 0 12px;
+  }
+  .hero h2 span{color:#f4c96b;}
+  .hero p{color:#d6e8dd; font-size:1.02rem; max-width:520px;}
+  .pill-row{display:flex; gap:10px; flex-wrap:wrap; margin:16px 0 22px;}
+  .pill-row span{
+    background:rgba(255,255,255,0.1);
+    border:1px solid rgba(255,255,255,0.25);
+    padding:6px 14px; border-radius:20px; font-size:0.85rem;
+  }
+  .hero-actions{display:flex; gap:12px; flex-wrap:wrap;}
+  .btn{
+    padding:12px 20px; border-radius:9px; font-weight:700;
+    font-size:0.95rem; border:none; display:inline-flex; align-items:center; gap:8px;
+  }
+  .btn-gold{background:var(--gold); color:#3a2600;}
+  .btn-gold:hover{background:var(--gold-dark);}
+  .btn-outline-light{background:transparent; color:#fff; border:1px solid rgba(255,255,255,0.5);}
+  .btn-outline-light:hover{background:rgba(255,255,255,0.12);}
+  .btn-green{background:var(--green-800); color:#fff;}
+  .btn-green:hover{background:var(--green-900);}
+ 
+  .hero-card{
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.18);
+    border-radius:14px;
+    padding:22px;
+  }
+  .hero-card h3{color:#fff; font-size:1.05rem; display:flex; align-items:center; gap:8px;}
+  .hero-card .live{
+    margin-left:auto; font-size:0.68rem; background:rgba(95,214,143,0.2);
+    color:#8fe6b3; padding:3px 9px; border-radius:20px; font-weight:600;
+  }
+  .hero-card h3{justify-content:space-between;}
+  .hero-card p{color:#d6e8dd; font-size:0.9rem; margin-top:8px;}
+  .contact-line{
+    display:flex; align-items:center; justify-content:space-between;
+    background:rgba(255,255,255,0.07);
+    border-radius:9px; padding:12px 14px; margin-top:12px;
+  }
+  .contact-line .label{font-size:0.8rem; color:#c7ddcf;}
+  .contact-line .value{font-weight:700; color:#fff; font-size:0.95rem;}
+  .contact-line .go{
+    background:var(--gold); color:#3a2600; padding:6px 12px; border-radius:7px; font-size:0.8rem; font-weight:700;
+  }
+  .contact-line.blue .go{background:#4a7bd6; color:#fff;}
+ 
+  /* ---------- Cards grid ---------- */
+  .card-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:18px;}
+  .card{
+    background:var(--white); border:1px solid var(--line);
+    border-radius:var(--radius); padding:20px;
+    box-shadow:var(--shadow);
+  }
+  .card .icon{
+    width:40px; height:40px; border-radius:10px;
+    background:var(--green-100); color:var(--green-800);
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.2rem; margin-bottom:12px;
+  }
+  .status-tag{
+    float:right; font-size:0.7rem; font-weight:700; padding:3px 10px;
+    border-radius:20px;
+  }
+  .status-soon{background:#fdf1da; color:#9a6a10;}
+  .status-active{background:#e2f3e6; color:#1c7a3f;}
+  .status-open{background:#e7f0fc; color:#26569c;}
+  .status-next{background:#f3e8fb; color:#7433a8;}
+  .card h4{font-size:1.02rem; margin:6px 0 8px;}
+  .card p{font-size:0.88rem; color:var(--ink-soft); margin-bottom:14px;}
+  .card-footer{
+    display:flex; justify-content:space-between; align-items:center;
+    font-size:0.82rem; border-top:1px dashed var(--line); padding-top:12px;
+  }
+  .card-footer .goal{color:var(--ink-soft);}
+  .card-footer .join{color:var(--green-800); font-weight:700;}
+ 
+  /* ---------- Problems / report ---------- */
+  .split{display:grid; grid-template-columns:0.85fr 1.15fr; gap:22px; align-items:start;}
+  .panel{
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+    padding:22px; box-shadow:var(--shadow);
+  }
+  .panel h3{font-size:1.05rem; display:flex; align-items:center; gap:8px;}
+  .field{margin-bottom:14px;}
+  .field label{display:block; font-size:0.85rem; font-weight:600; margin-bottom:6px; color:var(--ink);}
+  .field input, .field select, .field textarea{
+    width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:8px;
+    font-family:inherit; font-size:0.92rem; background:#fbfbf9;
+  }
+  .field textarea{min-height:90px; resize:vertical;}
+  .two-col{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+  .submit-note{font-size:0.75rem; color:var(--ink-soft); float:right;}
+ 
+  .filter-row{display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:10px;}
+  .filter-row select{padding:8px 10px; border:1px solid var(--line); border-radius:7px; font-family:inherit;}
+  .issue-list{display:flex; flex-direction:column; gap:14px;}
+  .issue-card{
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+    padding:18px; box-shadow:var(--shadow);
+  }
+  .tag-row{display:flex; gap:8px; margin-bottom:10px; flex-wrap:wrap;}
+  .tag{font-size:0.72rem; font-weight:700; padding:4px 10px; border-radius:20px;}
+  .tag-cat{background:#fdece2; color:#a24c1f;}
+  .tag-status-progress{background:#fdf1da; color:#9a6a10;}
+  .tag-status-done{background:#e2f3e6; color:#1c7a3f;}
+  .tag-status-open{background:#e7f0fc; color:#26569c;}
+  .issue-card h4{font-size:1rem; margin-bottom:6px;}
+  .issue-card .meta{font-size:0.8rem; color:var(--ink-soft); display:flex; justify-content:space-between; margin-top:10px;}
+  .response-box{
+    background:var(--green-100); border-radius:8px; padding:12px 14px; margin-top:12px; font-size:0.86rem;
+  }
+  .response-box strong{color:var(--green-800); display:block; margin-bottom:4px;}
+  .issue-actions{display:flex; justify-content:space-between; align-items:center; margin-top:12px;}
+  .support-btn{background:var(--white); border:1px solid var(--line); border-radius:7px; padding:6px 12px; font-size:0.8rem; font-weight:600; color:var(--green-800);}
+  .link-btns{display:flex; gap:8px;}
+  .link-btns a{background:var(--green-100); color:var(--green-800); padding:6px 10px; border-radius:7px; font-size:0.78rem; font-weight:600;}
+ 
+  /* ---------- Blood donor ---------- */
+  .search-bar{display:flex; gap:12px; margin-bottom:16px; flex-wrap:wrap;}
+  .search-bar input{flex:1; min-width:220px; padding:11px 14px; border:1px solid var(--line); border-radius:8px; font-family:inherit;}
+  .group-filters{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px;}
+  .group-filters button{
+    padding:7px 14px; border-radius:20px; border:1px solid var(--line); background:var(--white);
+    font-size:0.85rem; font-weight:600; color:var(--ink-soft);
+  }
+  .group-filters button.active{background:#e34c4c; color:#fff; border-color:#e34c4c;}
+  .donor-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:16px;}
+  .donor-card{
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+    padding:16px; display:flex; gap:12px; align-items:flex-start; box-shadow:var(--shadow);
+  }
+  .blood-badge{
+    width:42px; height:42px; border-radius:50%; background:#fdecec; color:#c62f2f;
+    display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.85rem; flex-shrink:0;
+  }
+  .donor-info{flex:1;}
+  .donor-info h4{font-size:0.95rem; margin-bottom:3px;}
+  .donor-info .loc{font-size:0.78rem; color:var(--ink-soft);}
+  .donor-info .date{font-size:0.75rem; color:var(--ink-soft); margin-top:4px;}
+  .call-btn{
+    background:#fdecec; color:#c62f2f; border-radius:7px; padding:8px 10px; font-size:0.8rem; font-weight:700; align-self:center;
+  }
+  .register-btn{background:#e34c4c; color:#fff; padding:11px 18px; border-radius:8px; font-weight:700; border:none;}
+ 
+  /* ---------- Notice board ---------- */
+  .notice-grid{display:grid; grid-template-columns:1.4fr 1fr; gap:22px;}
+  .notice-item{
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+    padding:18px; margin-bottom:14px; box-shadow:var(--shadow);
+  }
+  .notice-item .meta-row{display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;}
+  .notice-cat{font-size:0.72rem; font-weight:700; padding:3px 10px; border-radius:20px;}
+  .cat-org{background:#fdf1da; color:#9a6a10;}
+  .cat-dev{background:#e7f0fc; color:#26569c;}
+  .cat-health{background:#fdece2; color:#a24c1f;}
+  .notice-item .date{font-size:0.78rem; color:var(--ink-soft);}
+  .notice-item h4{font-size:1rem;}
+  .notice-item p{font-size:0.87rem; color:var(--ink-soft);}
+ 
+  .helpline-panel{background:var(--white); border:1px solid var(--line); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow);}
+  .helpline-panel h3{display:flex; justify-content:space-between; align-items:center; font-size:1rem;}
+  .badge-24{background:#fdecec; color:#c62f2f; font-size:0.68rem; font-weight:700; padding:3px 9px; border-radius:20px;}
+  .helpline-item{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:12px 0; border-bottom:1px solid var(--line);
+  }
+  .helpline-item:last-of-type{border-bottom:none;}
+  .helpline-item .name{font-weight:600; font-size:0.9rem;}
+  .helpline-item .sub{font-size:0.76rem; color:var(--ink-soft);}
+  .helpline-item .num{
+    background:var(--green-800); color:#fff; padding:6px 12px; border-radius:20px; font-size:0.85rem; font-weight:700;
+  }
+  .addr-block{margin-top:16px; font-size:0.85rem; color:var(--ink-soft); line-height:1.8;}
+ 
+  /* ---------- Volunteer ---------- */
+  .volunteer-hero{text-align:center; margin-bottom:26px;}
+  .promise-list{list-style:none; margin:0; padding:0;}
+  .promise-list li{
+    display:flex; gap:10px; padding:10px 0; font-size:0.9rem; align-items:flex-start;
+    border-bottom:1px solid var(--line);
+  }
+  .promise-list li:last-child{border-bottom:none;}
+  .promise-list .check{color:var(--green-800); font-weight:700;}
+  .member-item{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:12px 0; border-bottom:1px solid var(--line);
+  }
+  .member-item:last-child{border-bottom:none;}
+  .member-item .n{font-weight:600; font-size:0.9rem;}
+  .member-item .r{font-size:0.78rem; color:var(--ink-soft);}
+  .ok-mark{width:22px; height:22px; border-radius:50%; background:var(--green-100); color:var(--green-800); display:flex; align-items:center; justify-content:center; font-size:0.8rem;}
+ 
+  /* ---------- Donation ---------- */
+  .donate-hero{
+    background:linear-gradient(150deg, var(--green-900) 0%, var(--green-700) 100%);
+    border-radius:16px; padding:32px; color:#eef6f0; margin-bottom:26px;
+    display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap;
+  }
+  .donate-hero h2{color:#fff; font-size:1.5rem; margin:8px 0 6px;}
+  .donate-hero p{color:#d6e8dd; font-size:0.92rem; max-width:520px; margin:0;}
+  .progress-wrap{min-width:230px;}
+  .progress-track{background:rgba(255,255,255,0.15); border-radius:20px; height:10px; overflow:hidden; margin:8px 0;}
+  .progress-fill{background:var(--gold); height:100%; border-radius:20px;}
+  .progress-labels{display:flex; justify-content:space-between; font-size:0.8rem; color:#d6e8dd;}
+ 
+  .donate-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:18px; margin-bottom:26px;}
+  .donate-card{
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+    padding:20px; box-shadow:var(--shadow); text-align:center;
+  }
+  .donate-card .icon{
+    width:44px; height:44px; border-radius:50%; margin:0 auto 12px;
+    display:flex; align-items:center; justify-content:center; font-size:1.3rem;
+  }
+  .donate-card.bkash .icon{background:#fde3ee; color:#d6207a;}
+  .donate-card.nagad .icon{background:#fdece2; color:#e6621d;}
+  .donate-card.bank .icon{background:var(--green-100); color:var(--green-800);}
+  .donate-card h4{font-size:1rem; margin-bottom:4px;}
+  .donate-card .num{
+    font-family:'Hind Siliguri', sans-serif; font-weight:700; font-size:1.05rem;
+    color:var(--green-900); margin:8px 0 4px; letter-spacing:0.5px;
+  }
+  .donate-card .type{font-size:0.78rem; color:var(--ink-soft); margin-bottom:14px;}
+  .copy-btn{
+    background:var(--green-100); color:var(--green-800); border:none; border-radius:7px;
+    padding:8px 16px; font-size:0.82rem; font-weight:700; width:100%;
+  }
+  .copy-btn:hover{background:var(--green-800); color:#fff;}
+ 
+  .fund-note{
+    background:var(--white); border:1px dashed var(--line); border-radius:var(--radius);
+    padding:18px 20px; font-size:0.88rem; color:var(--ink-soft); text-align:center;
+  }
+ 
+  /* ---------- Footer ---------- */
+  footer{background:var(--green-900); color:#cfe6da; margin-top:50px;}
+  .footer-inner{max-width:1200px; margin:0 auto; padding:44px 20px 24px; display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:30px;}
+  footer h3{color:#fff; font-size:1rem; display:flex; align-items:center; gap:8px;}
+  footer p{font-size:0.85rem; color:#a9c9b8;}
+  footer h5{color:#f4c96b; font-size:0.85rem; margin-bottom:12px; font-family:'Hind Siliguri', sans-serif;}
+  footer ul{list-style:none; padding:0; margin:0; font-size:0.85rem; display:flex; flex-direction:column; gap:8px; color:#cfe6da;}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,0.1); text-align:center; padding:16px 20px; font-size:0.8rem; color:#9bbcaa;}
+ 
+  /* toast */
+  .toast{
+    position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(20px);
+    background:var(--green-900); color:#fff; padding:12px 22px; border-radius:9px;
+    font-size:0.9rem; opacity:0; pointer-events:none; transition:all 0.25s ease; z-index:100;
+    box-shadow:0 6px 20px rgba(0,0,0,0.25);
+  }
+  .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+ 
+  @media (max-width:980px){
+    .hero{grid-template-columns:1fr;}
+    .split, .notice-grid{grid-template-columns:1fr;}
+    .card-grid, .donor-grid{grid-template-columns:repeat(2,1fr);}
+    nav.tabs{display:none; position:absolute; top:100%; left:0; right:0; background:#fff; flex-direction:column; border-bottom:1px solid var(--line); padding:8px;}
+    nav.tabs.open{display:flex;}
+    .nav-toggle{display:block;}
+    header.site{position:relative;}
+  }
+  @media (max-width:640px){
+    .card-grid, .donor-grid{grid-template-columns:1fr;}
+    .two-col{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+ 
+<div class="topbar">
+  <div class="status"><span class="dot"></span> শ্রীকামতা ইনসাফ যুব সংঘ — ইনসাফ । ঐক্য । সেবা । উন্নয়ন</div>
+  <div>সার্বক্ষণিক গ্রামবাসী সেবা হেল্পলাইন: <a href="tel:+8801700000000">📞 +৮৮০ ১৭০০-০০০০০০</a></div>
+</div>
+ 
+<header class="site">
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-mark">ই</div>
+      <div class="brand-text">
+        <h1>শ্রীকামতা ইনসাফ যুব সংঘ</h1>
+        <p>ঐক্য ও সেবায় শ্রীকামতার নতুন দিগন্ত</p>
+      </div>
+    </div>
+    <button class="nav-toggle" onclick="document.querySelector('nav.tabs').classList.toggle('open')">☰ মেনু</button>
+    <nav class="tabs">
+      <button class="tab-btn active" data-view="home">মূল পাতা</button>
+      <button class="tab-btn" data-view="issues">সমস্যা ও পরামর্শ <span class="badge-live">লাইভ</span></button>
+      <button class="tab-btn" data-view="programs">জনকল্যাণ কর্মসূচি</button>
+      <button class="tab-btn" data-view="donors">রক্তদাতা ডিরেক্টরি</button>
+      <button class="tab-btn" data-view="notices">নোটিশ ও সহায়তা</button>
+      <button class="tab-btn" data-view="volunteer">স্বেচ্ছাসেবক</button>
+      <button class="tab-btn" data-view="donation">💚 অনুদান</button>
+      <button class="tab-btn cta-report" data-view="issues">সমস্যার কথা জানান</button>
+    </nav>
+  </div>
+</header>
+ 
+<main>
+ 
+  <!-- ================= HOME ================= -->
+  <section class="view active" id="home">
+    <div class="hero">
+      <div>
+        <span class="eyebrow-pill">🌿 ঐক্য ও সেবায় শ্রীকামতার নতুন দিগন্ত</span>
+        <h2>আসসালামু আলাইকুম,<br>প্রিয় শ্রীকামতা <span>গ্রামবাসী</span></h2>
+        <p>আমাদের প্রিয় গ্রামের সার্বিক উন্নয়ন ও মানুষের কল্যাণে শ্রীকামতা ইনসাফ যুব সংঘ শীঘ্রই বেশ কিছু নতুন জনকল্যাণমূলক কর্মসূচি নিয়ে আসছে। গ্রামের উন্নয়নে আপনাদের ভালোবাসা, দোয়া ও সক্রিয় সহযোগিতাই আমাদের মূল প্রেরণা।</p>
+        <div class="pill-row">
+          <span>⚖️ ইনসাফ (ন্যায়পরায়ণতা)</span>
+          <span>🤝 ঐক্য</span>
+          <span>💚 সেবা</span>
+          <span>🌱 উন্নয়ন</span>
+        </div>
+        <div class="hero-actions">
+          <button class="btn btn-gold" data-view="issues">⚠️ আপনার সমস্যার কথা জানান</button>
+          <button class="btn btn-outline-light" onclick="window.open('https://wa.me/8801700000000','_blank')">💬 হোয়াটসঅ্যাপে মেসেজ পাঠান</button>
+        </div>
+      </div>
+ 
+      <div>
+        <div class="hero-card">
+          <h3>💬 আপনার পাশে আমরা <span class="live">২৪/৭ উন্মুক্ত</span></h3>
+          <p>গ্রামের যে কোনো সামাজিক সমস্যা, রাস্তাঘাটের অসঙ্গতি, নিষ্কাশন কিংবা উন্নয়নমূলক পরামর্শ জানাতে দ্বিধাহীনভাবে আমাদের সাথে যোগাযোগ করুন। আপনার পাশে থেকে সমাধান করাই আমাদের অঙ্গীকার।</p>
+ 
+          <div class="contact-line">
+            <div>
+              <div class="label">সরাসরি কল / হোয়াটসঅ্যাপ</div>
+              <div class="value">+৮৮০ ১৭০০-০০০০০০</div>
+            </div>
+            <span class="go" onclick="window.open('tel:+8801700000000')">কল করুন</span>
+          </div>
+ 
+          <div class="contact-line blue">
+            <div>
+              <div class="label">ফেসবুক পেজ ইনবক্স</div>
+              <div class="value" style="font-size:0.85rem;">শ্রীকামতা ইনসাফ যুব সংঘ</div>
+            </div>
+            <span class="go">মেসেজ</span>
+          </div>
+ 
+          <div style="display:flex; gap:10px; margin-top:14px;">
+            <div style="flex:1; background:rgba(255,255,255,0.07); border-radius:9px; padding:12px; cursor:pointer;" data-view="donors">
+              <div style="font-size:0.85rem; color:#f4a8a8;">🩸 রক্তদান</div>
+              <div style="font-size:0.8rem; color:#d6e8dd; margin-top:2px;">জরুরি রক্তদাতা খুঁজুন</div>
+            </div>
+            <div style="flex:1; background:rgba(255,255,255,0.07); border-radius:9px; padding:12px; cursor:pointer;" data-view="programs">
+              <div style="font-size:0.85rem; color:#8fe6b3;">💚 কর্মসূচি</div>
+              <div style="font-size:0.8rem; color:#d6e8dd; margin-top:2px;">সেবামূলক উদ্যোগসমূহ</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="section-head">
+      <span class="eyebrow-pill">🌿 সেবা ও উন্নয়ন কর্মসূচি</span>
+      <h2>শ্রীকামতা ইনসাফ যুব সংঘের জনকল্যাণমূলক উদ্যোগ</h2>
+      <p>"ঐক্য ও সেবায় শ্রীকামতার নতুন দিগন্ত" — গ্রামের প্রতিটি মানুষের কল্যাণে আমাদের চলমান ও আসন্ন কার্যক্রম। আপনার সক্রিয় অংশগ্রহণই আমাদের শক্তি।</p>
+    </div>
+ 
+    <div class="card-grid" id="home-programs-preview"></div>
+  </section>
+ 
+  <!-- ================= ISSUES ================= -->
+  <section class="view" id="issues">
+    <div class="section-head">
+      <span class="eyebrow-pill">⚠️ নাগরিক অভিযোগ ও উন্নয়ন পরামর্শ</span>
+      <h2>আপনার সমস্যার কথা আমাদের জানান</h2>
+      <p>শ্রীকামতা গ্রামের যে কোনো সামাজিক অসঙ্গতি, ভাঙা রাস্তা, ড্রেনেজ বা উন্নয়নমূলক পরামর্শ সরাসরি জানান। ইনসাফ যুব সংঘ আপনার পাশে থেকে সমাধানের সবরকম প্রচেষ্টা চালাবে।</p>
+    </div>
+ 
+    <div class="split">
+      <div class="panel">
+        <h3>📨 নতুন সমস্যা / পরামর্শ দিন</h3>
+        <p style="font-size:0.8rem; color:var(--ink-soft); margin:-4px 0 16px;">সম্পূর্ণ গোপনীয়তা বজায় রাখা হয়</p>
+        <form id="issue-form">
+          <div class="field">
+            <label>সমস্যার ধরণ (Category) *</label>
+            <select required>
+              <option>রাস্তাঘাট ও কালভার্ট</option>
+              <option>বিদ্যুৎ ও সড়কবাতি</option>
+              <option>পানি নিষ্কাশন ও ড্রেনেজ</option>
+              <option>স্বাস্থ্য ও পরিচ্ছন্নতা</option>
+              <option>অন্যান্য</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>সমস্যার শিরোনাম *</label>
+            <input type="text" placeholder="যেমন: শ্রীকামতা পূর্বপাড়া কালভার্ট ভাঙা..." required>
+          </div>
+          <div class="field">
+            <label>নির্দিষ্ট স্থান / পাড়ার নাম</label>
+            <input type="text" placeholder="যেমন: মধ্যপাড়া জামে মসজিদের পাশে">
+          </div>
+          <div class="field">
+            <label>বিস্তারিত বিবরণ *</label>
+            <textarea placeholder="সমস্যাটি কী, কতদিন ধরে চলছে এবং কী ধরনের সমাধান প্রয়োজন..." required></textarea>
+          </div>
+          <div class="two-col">
+            <div class="field">
+              <label>আপনার নাম *</label>
+              <input type="text" placeholder="আপনার নাম" required>
+            </div>
+            <div class="field">
+              <label>মোবাইল নম্বর</label>
+              <input type="text" placeholder="017XXXXXXXX">
+            </div>
+          </div>
+          <button type="submit" class="btn btn-green" style="width:100%; justify-content:center; margin-top:6px;">📤 পোর্টালে সমস্যা জমা দিন</button>
+          <button type="button" class="btn" style="width:100%; justify-content:center; margin-top:10px; background:var(--green-100); color:var(--green-800);" onclick="window.open('https://wa.me/8801700000000','_blank')">💬 সরাসরি হোয়াটসঅ্যাপে পাঠান</button>
+        </form>
+      </div>
+ 
+      <div>
+        <div class="filter-row">
+          <div style="font-weight:600; font-size:0.9rem;">ফিল্টার (<span id="issue-count">3</span>টি সমস্যা)</div>
+          <div style="display:flex; gap:8px;">
+            <select><option>সকল ক্যাটাগরি</option></select>
+            <select><option>সকল অবস্থা</option></select>
+          </div>
+        </div>
+ 
+        <div class="issue-list" id="issue-list"></div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- ================= PROGRAMS ================= -->
+  <section class="view" id="programs">
+    <div class="section-head">
+      <span class="eyebrow-pill">🌿 সেবা ও উন্নয়ন কর্মসূচি</span>
+      <h2>শ্রীকামতা ইনসাফ যুব সংঘের জনকল্যাণমূলক উদ্যোগ</h2>
+      <p>"ঐক্য ও সেবায় শ্রীকামতার নতুন দিগন্ত" — গ্রামের প্রতিটি মানুষের কল্যাণে আমাদের চলমান ও আসন্ন কার্যক্রম।</p>
+    </div>
+    <div class="card-grid" id="programs-full"></div>
+ 
+    <div style="margin-top:32px; background:linear-gradient(135deg, var(--green-800), var(--green-900)); border-radius:14px; padding:26px 30px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:18px;">
+      <div>
+        <span class="eyebrow-pill" style="background:rgba(255,255,255,0.12); color:#f4c96b;">🌟 গ্রামের উন্নয়নে আপনিও অংশীদার হোন</span>
+        <h3 style="color:#fff; margin-top:10px; font-size:1.2rem;">শ্রীকামতা ইনসাফ যুব সংঘের সাথে কাজ করতে চান?</h3>
+        <p style="color:#d6e8dd; font-size:0.9rem; margin-top:6px;">আপনার অবসর সময়, সৎ পরামর্শ কিংবা মেধা দিয়ে গ্রামের সাধারণ মানুষের পাশে দাঁড়ান।</p>
+      </div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <button class="btn btn-gold" data-view="volunteer">👤 স্বেচ্ছাসেবক হিসেবে নিবন্ধন</button>
+        <button class="btn btn-outline-light" data-view="issues">উন্নয়ন পরামর্শ দিন</button>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- ================= DONORS ================= -->
+  <section class="view" id="donors">
+    <div class="section-head">
+      <span class="eyebrow-pill">🩸 জরুরি রক্তদান নেটওয়ার্ক</span>
+      <h2>শ্রীকামতা ব্লাড ডোনার ডিরেক্টরি</h2>
+      <p>"রক্ত দিন, জীবন বাঁচান" — মুমূর্ষু রোগীর জরুরি রক্তের প্রয়োজনে শ্রীকামতা ইনসাফ যুব সংঘের সার্বক্ষণিক স্বেচ্ছাসেবী রক্তদাতাদের তালিকা।</p>
+    </div>
+ 
+    <div class="search-bar">
+      <input type="text" id="donor-search" placeholder="নাম বা পাড়ার নাম দিয়ে খুঁজুন...">
+      <button class="register-btn" data-view="volunteer">➕ রক্তদাতা হিসেবে নিবন্ধন করুন</button>
+    </div>
+ 
+    <div class="group-filters" id="group-filters"></div>
+ 
+    <div class="donor-grid" id="donor-grid"></div>
+  </section>
+ 
+  <!-- ================= NOTICES ================= -->
+  <section class="view" id="notices">
+    <div class="section-head">
+      <span class="eyebrow-pill">🔔 জরুরি তথ্য ও বিজ্ঞপ্তি</span>
+      <h2>নোটিশ বোর্ড ও জরুরি গ্রাম হেল্পলাইন</h2>
+      <p>শ্রীকামতা ইনসাফ যুব সংঘের নিয়মিত ঘোষণা, সভার তারিখ এবং যেকোনো জরুরি পরিস্থিতিতে যোগাযোগের সরকারি ও স্থানীয় হেল্পলাইনসমূহ।</p>
+    </div>
+ 
+    <div class="notice-grid">
+      <div>
+        <div style="font-weight:700; margin-bottom:12px; display:flex; justify-content:space-between; align-items:center;">
+          <span>🔔 সাম্প্রতিক নোটিশ ও ঘোষণা</span>
+          <span style="font-size:0.78rem; color:var(--ink-soft); font-weight:400;">সর্বশেষ আপডেট</span>
+        </div>
+        <div id="notice-list"></div>
+      </div>
+ 
+      <div class="helpline-panel">
+        <h3>⚠️ জরুরি গ্রাম ডিরেক্টরি ও হেল্পলাইন <span class="badge-24">২৪ ঘণ্টা</span></h3>
+        <div id="helpline-list"></div>
+        <div class="addr-block">
+          📍 অফিসের ঠিকানা: শ্রীকামতা কেন্দ্রীয় বাজার সংলগ্ন, বিজয়পুর, সদর দক্ষিণ, কুমিল্লা<br>
+          ✉️ ইমেইল: shrikamta.insaf@gmail.com
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- ================= VOLUNTEER ================= -->
+  <section class="view" id="volunteer">
+    <div class="section-head volunteer-hero">
+      <span class="eyebrow-pill">🤝 যুবসমাজ ঐক্যবদ্ধ</span>
+      <h2>ইনসাফ যুব সংঘের স্বেচ্ছাসেবক পরিবারে যুক্ত হোন</h2>
+      <p>শ্রীকামতা গ্রামের পরিবর্তন ও সাধারণ মানুষের কল্যাণে তরুণদের নিঃস্বার্থ সেবাই আমাদের প্রধান চালিকাশক্তি। আসুন, একসাথে গড়ি একটি আদর্শ, সুশিক্ষিত ও পরিচ্ছন্ন গ্রাম।</p>
+    </div>
+ 
+    <div class="split">
+      <div class="panel">
+        <h3>👤 স্বেচ্ছাসেবক নিবন্ধন ফর্ম</h3>
+        <form id="volunteer-form">
+          <div class="two-col">
+            <div class="field"><label>পূর্ণ নাম *</label><input type="text" placeholder="আপনার নাম" required></div>
+            <div class="field"><label>মোবাইল নম্বর *</label><input type="text" placeholder="017XXXXXXXX" required></div>
+          </div>
+          <div class="two-col">
+            <div class="field"><label>পেশা / শিক্ষা প্রতিষ্ঠান</label><input type="text" placeholder="যেমন: অনার্স শিক্ষার্থী / ব্যবসায়ী"></div>
+            <div class="field">
+              <label>রক্তের গ্রুপ</label>
+              <select><option>O+</option><option>O-</option><option>A+</option><option>A-</option><option>B+</option><option>B-</option><option>AB+</option><option>AB-</option></select>
+            </div>
+          </div>
+          <div class="two-col">
+            <div class="field"><label>গ্রামের পাড়ার নাম</label><input type="text" placeholder="যেমন: শ্রীকামতা মধ্যপাড়া"></div>
+            <div class="field">
+              <label>যেসব কাজে যুক্ত থাকতে চান</label>
+              <select>
+                <option>সার্বিক সমাজসেবা ও উন্নয়ন</option>
+                <option>শিক্ষা ও প্রযুক্তি সেবা</option>
+                <option>রক্তদান ও স্বাস্থ্যসেবা</option>
+                <option>ত্রাণ বিতরণ ও জরুরি সহায়তা</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-green" style="width:100%; justify-content:center;">📩 স্বেচ্ছাসেবক হিসেবে যোগ দিন</button>
+        </form>
+      </div>
+ 
+      <div>
+        <div class="panel" style="margin-bottom:18px;">
+          <h3>✅ আমাদের স্বেচ্ছাসেবকদের অঙ্গীকার</h3>
+          <ul class="promise-list">
+            <li><span class="check">✓</span> দলমত নির্বিশেষে সকল গ্রামবাসীর পাশে নিঃস্বার্থভাবে দাঁড়ানো।</li>
+            <li><span class="check">✓</span> গ্রামের প্রাকৃতিক সৌন্দর্য ও পরিচ্ছন্নতা রক্ষায় নিয়মিত সক্রিয় ভূমিকা রাখা।</li>
+            <li><span class="check">✓</span> অসহায় শিক্ষার্থী ও রোগীদের জরুরি প্রয়োজনে হাত বাড়িয়ে দেওয়া।</li>
+          </ul>
+        </div>
+ 
+        <div class="panel">
+          <h3 style="justify-content:space-between; display:flex;">সাম্প্রতি নিবন্ধিত একনিষ্ঠ সদস্যবৃন্দ <span style="font-size:0.75rem; color:var(--green-800); font-weight:600;">সক্রিয় নেটওয়ার্ক</span></h3>
+          <div id="member-list"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- ================= DONATION ================= -->
+  <section class="view" id="donation">
+    <div class="donate-hero">
+      <div>
+        <span class="eyebrow-pill" style="background:rgba(255,255,255,0.12); color:#f4c96b;">💚 গ্রামের জন্য আপনার অবদান</span>
+        <h2>অনুদান দিয়ে পাশে থাকুন</h2>
+        <p>আপনার সামান্য অনুদান শ্রীকামতা গ্রামের বিনামূল্যে চিকিৎসা ক্যাম্প, বৃক্ষরোপণ, শিক্ষা উপকরণ ও জরুরি রক্তদান কার্যক্রম চালিয়ে যেতে সরাসরি সহায়তা করে। প্রতিটি টাকার হিসাব স্বচ্ছভাবে নোটিশ বোর্ডে জানানো হয়।</p>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-labels"><span>সংগৃহীত: ৳৪২,৫০০</span><span>লক্ষ্য: ৳১,০০,০০০</span></div>
+        <div class="progress-track"><div class="progress-fill" style="width:43%;"></div></div>
+        <div class="progress-labels"><span>২০২৬ সালের চিকিৎসা ও শিক্ষা তহবিল</span></div>
+      </div>
+    </div>
+ 
+    <div class="section-head">
+      <span class="eyebrow-pill">💳 অনুদান পাঠানোর মাধ্যম</span>
+      <h2>যেকোনো একটি মাধ্যমে অনুদান পাঠান</h2>
+      <p>অনুদান পাঠানোর পর নাম ও পরিমাণ জানিয়ে হোয়াটসঅ্যাপে একটি স্ক্রিনশট পাঠালে আমরা রশিদ ও ধন্যবাদপত্র পাঠিয়ে দেব।</p>
+    </div>
+ 
+    <div class="donate-grid">
+      <div class="donate-card bkash">
+        <div class="icon">📱</div>
+        <h4>বিকাশ</h4>
+        <div class="num">০১৭০০-০০০০০০</div>
+        <div class="type">পার্সোনাল নম্বর — "Send Money" করুন</div>
+        <button class="copy-btn" onclick="copyNum('01700000000', this)">নম্বর কপি করুন</button>
+      </div>
+      <div class="donate-card nagad">
+        <div class="icon">💰</div>
+        <h4>নগদ</h4>
+        <div class="num">০১৭০০-০০০০০০</div>
+        <div class="type">পার্সোনাল নম্বর — "Send Money" করুন</div>
+        <button class="copy-btn" onclick="copyNum('01700000000', this)">নম্বর কপি করুন</button>
+      </div>
+      <div class="donate-card bank">
+        <div class="icon">🏦</div>
+        <h4>ব্যাংক অ্যাকাউন্ট</h4>
+        <div class="num" style="font-size:0.92rem;">শ্রীকামতা ইনসাফ যুব সংঘ</div>
+        <div class="type">হিসাব নং: ০০০০-০০০০০০-০০১ · [ব্যাংকের নাম], কুমিল্লা শাখা</div>
+        <button class="copy-btn" onclick="copyNum('0000-000000-001', this)">হিসাব নম্বর কপি করুন</button>
+      </div>
+    </div>
+ 
+    <div class="fund-note">
+      সরাসরি হোয়াটসঅ্যাপে যোগাযোগ করতে চাইলে <strong>+৮৮০ ১৭০০-০০০০০০</strong> নম্বরে মেসেজ দিন, অথবা
+      <a href="#" style="color:var(--green-800); font-weight:700;" data-view="notices">নোটিশ বোর্ডে</a> সর্বশেষ তহবিল হিসাব দেখুন।
+    </div>
+  </section>
+ 
+</main>
+ 
+<footer>
+  <div class="footer-inner">
+    <div>
+      <h3>🌿 শ্রীকামতা ইনসাফ যুব সংঘ</h3>
+      <p>"ঐক্য ও সেবায় শ্রীকামতার নতুন দিগন্ত" — গ্রামের সর্বস্তরের মানুষের কল্যাণ, পরিচ্ছন্ন পরিবেশ এবং যুবসমাজের সার্বিক উন্নয়নে নিবেদিত সামাজিক প্ল্যাটফর্ম।</p>
+    </div>
+    <div>
+      <h5>প্রধান সেবাসমূহ</h5>
+      <ul>
+        <li>সমস্যার বিবরণ ও সমাধান আবেদন</li>
+        <li>সার্বক্ষণিক রক্তের গ্রুপ ডিরেক্টরি</li>
+        <li>ফ্রি স্বাস্থ্য ও শিক্ষা কর্মসূচি</li>
+        <li>স্বেচ্ছাসেবী নিবন্ধন ফর্ম</li>
+      </ul>
+    </div>
+    <div>
+      <h5>যোগাযোগের মাধ্যম</h5>
+      <ul>
+        <li>📞 হেল্পলাইন: +৮৮০ ১৭০০-০০০০০০</li>
+        <li>💬 হোয়াটসঅ্যাপ: +৮৮০ ১৭০০-০০০০০০</li>
+        <li>✉️ shrikamta.insaf@gmail.com</li>
+        <li>📍 বিজয়পুর, সদর দক্ষিণ, কুমিল্লা</li>
+      </ul>
+    </div>
+    <div>
+      <h5>আমাদের মূলনীতি</h5>
+      <p>ইনসাফ । ঐক্য । সেবা । উন্নয়ন — গ্রামবাসীর পাশে নিঃস্বার্থে থেকে শ্রীকামতাকে একটি অনুকরণীয় ও শান্তিপূর্ণ গ্রামে পরিণত করাই আমাদের ব্রত।</p>
+    </div>
+  </div>
+  <div class="footer-bottom">© ২০২৬ শ্রীকামতা ইনসাফ যুব সংঘ। সর্বস্বত্ব সংরক্ষিত।</div>
+</footer>
+ 
+<div class="toast" id="toast">ধন্যবাদ! আপনার তথ্য গ্রহণ করা হয়েছে।</div>
+ 
+<script>
+/* ---------------- Data ---------------- */
+const programs = [
+  {icon:"🩺", status:"শীঘ্রই শুরু হচ্ছে", cls:"status-soon", title:"বিনামূল্যে চিকিৎসা ও ব্লাড গ্রুপিং ক্যাম্প ২০২৬",
+   desc:"শ্রীকামতা সরকারি প্রাথমিক বিদ্যালয় প্রাঙ্গণে বিশেষজ্ঞ চিকিৎসক দ্বারা ফ্রি প্রেসক্রিপশন ও গ্রামের সকল বয়সের মানুষের ফ্রি রক্তের গ্রুপ নির্ণয়।",
+   goal:"লক্ষ্য: ৫০০+ গ্রামবাসী"},
+  {icon:"🌳", status:"চলমান", cls:"status-active", title:"পরিচ্ছন্ন শ্রীকামতা ও বৃক্ষরোপণ কর্মসূচি",
+   desc:"গ্রামের প্রধান রাস্তাগুলোর দুই পাশে ফলজ, বনজ ও ঔষধি গাছ রোপণ এবং ড্রেনেজ পরিষ্কার-পরিচ্ছন্নতা অভিযান।",
+   goal:"লক্ষ্য: ১০০০টি চারা রোপণ"},
+  {icon:"🎓", status:"নিবন্ধন চলছে", cls:"status-open", title:"মেধাবী শিক্ষার্থী সহায়তা ও যুব কম্পিউটার কর্মশালা",
+   desc:"দরিদ্র ও মেধাবী শিক্ষার্থীদের মাঝে শিক্ষা উপকরণ বিতরণ এবং তরুণদের ফ্রিল্যান্সিং ও কম্পিউটার বেসিক প্রশিক্ষণ।",
+   goal:"লক্ষ্য: ১০০ জন তরুণ-তরুণী"},
+  {icon:"🩸", status:"সক্রিয় সেবা", cls:"status-active", title:"২৪/৭ জরুরি রক্তদান নেটওয়ার্ক ও হটলাইন",
+   desc:"যে কোনো মুমূর্ষু রোগীর প্রয়োজনে শ্রীকামতা ও পার্শ্ববর্তী এলাকার জন্য তাৎক্ষণিক রক্তদাতার ব্যবস্থা করা।",
+   goal:"লক্ষ্য: সার্বক্ষণিক সেবা"},
+  {icon:"🏆", status:"পরবর্তী মাসে", cls:"status-next", title:"মাদকমুক্ত সমাজ গঠনে যুব ক্রীড়া টুর্নামেন্ট",
+   desc:"যুবসমাজকে সুস্থ বিনোদনে উদ্বুদ্ধ করতে শ্রীকামতা ইনসাফ ফুটবল ও ক্রিকেট প্রিমিয়ার লিগ আয়োজন।",
+   goal:"লক্ষ্য: ৮টি দল ও ২০০+ খেলোয়াড়"}
+];
+ 
+const issues = [
+  {cat:"রাস্তাঘাট ও সাঁকো", status:"বাস্তবায়ন চলছে", statusCls:"tag-status-progress",
+   title:"শ্রীকামতা পূর্বপাড়া কালভার্ট মেরামত প্রয়োজন",
+   desc:"গত বর্ষায় পূর্বপাড়া সংযোগ ব্রিজের নিচের মাটি সরে গিয়ে যান চলাচলে ঝুঁকি তৈরি হয়েছে। জরুরি মেরামত প্রয়োজন।",
+   loc:"শ্রীকামতা পূর্বপাড়া, সরকারি প্রাথমিক বিদ্যালয়ের নিকট", by:"রফিকুল ইসলাম",
+   response:"ইনসাফ যুব সংঘের স্বেচ্ছাসেবক দল ঘটনাস্থল পরিদর্শন করেছে। ইউনিয়ন পরিষদের সাথে কথা বলে বালুর বস্তা ফেলা হয়েছে এবং দ্রুত পাকাকরণের আবেদন করা হয়েছে।",
+   support:18},
+  {cat:"বিদ্যুৎ ও সড়কবাতি", status:"সমাধান সম্পন্ন", statusCls:"tag-status-done",
+   title:"শ্রীকামতা বাজার মোড়ে নষ্ট সোলার সড়কবাতি প্রতিস্থাপন",
+   desc:"বাজার মোড়ের সোলার বাতিটি গত দুই সপ্তাহ ধরে জ্বলছে না, রাতের বেলা চলাচলে সমস্যা হচ্ছে।",
+   loc:"শ্রীকামতা কেন্দ্রীয় বাজার, তিন রাস্তার মোড়", by:"আবুল করিম",
+   response:"ইনসাফ যুব সংঘের তহবিল থেকে নতুন এলইডি লাইট ও ব্যাটারি মেরামত করে আলো সচল করা হয়েছে।",
+   support:24},
+  {cat:"পানি নিষ্কাশন ও ড্রেনেজ", status:"পর্যালোচনাধীন", statusCls:"tag-status-open",
+   title:"উত্তর পাড়া ড্রেনেজ নিষ্কাশন ব্যবস্থা বন্ধ",
+   desc:"পলিথিন ও ময়লা জমে পানি প্রবাহ বন্ধ হয়ে গেছে। সামান্য বৃষ্টিতেই বাড়ির সামনে জলাবদ্ধতা তৈরি হচ্ছে।",
+   loc:"শ্রীকামতা উত্তর পাড়া, জামে মসজিদ সংলগ্ন সড়ক", by:"মো: জামিল হোসেন",
+   response:"আগামী শুক্রবার যুব সংঘের পক্ষ থেকে পরিচ্ছন্নতা অভিযান পরিচালনা করা হবে।",
+   support:9}
+];
+ 
+const donors = [
+  {name:"আশিকুর রহমান", group:"O+", loc:"শ্রীকামতা মধ্যপাড়া", date:"২০২৬-০৬-১৫"},
+  {name:"শফিকুল ইসলাম সুমন", group:"A+", loc:"শ্রীকামতা পূর্বপাড়া", date:"২০২৬-০৫-১০"},
+  {name:"নাজমুল হোসেন", group:"B+", loc:"শ্রীকামতা বাজার রোড", date:"২০২৬-০৭-২০"},
+  {name:"মেহেদী হাসান শুভ", group:"AB+", loc:"শ্রীকামতা দক্ষিণপাড়া", date:"২০২৬-০৪-০১"},
+  {name:"কবিরুল আলম", group:"O-", loc:"শ্রীকামতা উত্তরপাড়া", date:"২০২৬-০৫-২৫"},
+  {name:"তানভীর আহমেদ", group:"B+", loc:"শ্রীকামতা পশ্চিমপাড়া", date:"২০২৬-০৬-০২"}
+];
+ 
+const notices = [
+  {cat:"সাংগঠনিক", cls:"cat-org", date:"আগামী শুক্রবার, বিকাল ৪:০০",
+   title:"শ্রীকামতা ইনসাফ যুব সংঘের সাধারণ সভা ও কর্মী সম্মেলন",
+   desc:"গ্রামের সার্বিক উন্নয়ন পরিকল্পনা ও নতুন কমিটির দায়িত্ব বণ্টন বিষয়ে সকল সদস্য ও শুভাকাঙ্ক্ষীদের উপস্থিত থাকার জন্য বিনীত অনুরোধ করা হচ্ছে।"},
+  {cat:"উন্নয়ন", cls:"cat-dev", date:"চলতি সপ্তাহ",
+   title:"গ্রামের ভাঙা রাস্তা ও সাঁকো সংক্রান্ত তথ্য সংগ্রহ চলছে",
+   desc:"যে কোনো পাড়ার চলাচলের অসুবিধা কিংবা ঝুঁকিপূর্ণ কালভার্টের ছবি ও বিবরণ অ্যাপের 'সমস্যার কথা জানান' সেকশনে জমা দিন।"},
+  {cat:"স্বাস্থ্য", cls:"cat-health", date:"সার্বক্ষণিক",
+   title:"জরুরি প্রয়োজনে রক্তদান হটলাইন সার্বক্ষণিক সচল",
+   desc:"হাসপাতালে রক্তের প্রয়োজনে যেকোনো গ্রুপের রক্তের জন্য আমাদের রক্তদাতা ডিরেক্টরি দেখুন অথবা সরাসরি যুব সংঘের হোয়াটসঅ্যাপে মেসেজ দিন।"}
+];
+ 
+const helplines = [
+  {name:"শ্রীকামতা ইনসাফ যুব সংঘ হটলাইন", sub:"সার্বক্ষণিক জরুরি সেবা", num:"+৮৮০১৭০০-০০০০০০"},
+  {name:"গ্রাম অ্যাম্বুলেন্স সেবা", sub:"জাতীয় জরুরি সেবা", num:"৯৯৯"},
+  {name:"নিকটস্থ স্বাস্থ্য কমপ্লেক্স", sub:"স্বাস্থ্য বাতায়ন", num:"১৬২৬৩"},
+  {name:"পল্লী বিদ্যুৎ অভিযোগ কেন্দ্র", sub:"বিদ্যুৎ সংক্রান্ত অভিযোগ", num:"১৬২০০"},
+  {name:"ইউপি সদস্য / মেম্বার কার্যালয়", sub:"শ্রীকামতা ইউনিয়ন পরিষদ", num:"০১৮০০-০০০০০০"}
+];
+ 
+const members = [
+  {name:"মাহমুদুল হাসান", group:"O+", sub:"শিক্ষার্থী, ঢাকা বিশ্ববিদ্যালয় · মধ্যপাড়া — আগ্রহ: শিক্ষা ও প্রযুক্তি সেবা"},
+  {name:"তানভীর আহমেদ", group:"B+", sub:"ব্যবসায়ী · পশ্চিমপাড়া — আগ্রহ: ত্রাণ বিতরণ ও জরুরি সহায়তা"}
+];
+ 
+/* ---------------- Render ---------------- */
+function programCard(p){
+  return `<div class="card">
+    <span class="status-tag ${p.cls}">${p.status}</span>
+    <div class="icon">${p.icon}</div>
+    <h4>${p.title}</h4>
+    <p>${p.desc}</p>
+    <div class="card-footer"><span class="goal">◎ ${p.goal}</span><span class="join">যোগ দিন →</span></div>
+  </div>`;
+}
+document.getElementById('home-programs-preview').innerHTML = programs.slice(0,3).map(programCard).join('');
+document.getElementById('programs-full').innerHTML = programs.map(programCard).join('');
+ 
+function issueCard(i){
+  return `<div class="issue-card">
+    <div class="tag-row"><span class="tag tag-cat">${i.cat}</span><span class="tag ${i.statusCls}">${i.status}</span></div>
+    <h4>${i.title}</h4>
+    <p style="font-size:0.88rem; color:var(--ink-soft);">${i.desc}</p>
+    <div class="meta"><span>📍 ${i.loc}</span><span>প্রেরক: ${i.by}</span></div>
+    <div class="response-box"><strong>✅ ইনসাফ যুব সংঘের পদক্ষেপ / প্রতিক্রিয়া:</strong>${i.response}</div>
+    <div class="issue-actions">
+      <button class="support-btn">👍 সমর্থন (${i.support})</button>
+      <div class="link-btns"><a href="#">✨ AI সমাধান পরামর্শ</a><a href="#">📄 ইউপি আবেদনপত্র</a></div>
+    </div>
+  </div>`;
+}
+document.getElementById('issue-list').innerHTML = issues.map(issueCard).join('');
+document.getElementById('issue-count').textContent = issues.length;
+ 
+function donorCard(d){
+  return `<div class="donor-card" data-name="${d.name}" data-loc="${d.loc}" data-group="${d.group}">
+    <div class="blood-badge">${d.group}</div>
+    <div class="donor-info">
+      <h4>${d.name}</h4>
+      <div class="loc">📍 ${d.loc}</div>
+      <div class="date">সর্বশেষ দান: ${d.date}</div>
+    </div>
+    <a class="call-btn" href="tel:+8801700000000">📞 কল</a>
+  </div>`;
+}
+function renderDonors(list){
+  document.getElementById('donor-grid').innerHTML = list.map(donorCard).join('');
+}
+renderDonors(donors);
+ 
+const groups = ["সকল গ্রুপ","A+","A-","B+","B-","O+","O-","AB+","AB-"];
+document.getElementById('group-filters').innerHTML = groups.map((g,idx)=>
+  `<button class="${idx===0?'active':''}" data-group="${g}">${g}</button>`).join('');
+ 
+document.querySelectorAll('#group-filters button').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('#group-filters button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    applyDonorFilters();
+  });
+});
+document.getElementById('donor-search').addEventListener('input', applyDonorFilters);
+ 
+function applyDonorFilters(){
+  const term = document.getElementById('donor-search').value.trim().toLowerCase();
+  const activeGroup = document.querySelector('#group-filters button.active').dataset.group;
+  const filtered = donors.filter(d=>{
+    const matchesGroup = activeGroup === "সকল গ্রুপ" || d.group === activeGroup;
+    const matchesTerm = !term || d.name.toLowerCase().includes(term) || d.loc.toLowerCase().includes(term);
+    return matchesGroup && matchesTerm;
+  });
+  renderDonors(filtered);
+}
+ 
+document.getElementById('notice-list').innerHTML = notices.map(n=>`
+  <div class="notice-item">
+    <div class="meta-row"><span class="notice-cat ${n.cls}">${n.cat}</span><span class="date">📅 ${n.date}</span></div>
+    <h4>${n.title}</h4>
+    <p>${n.desc}</p>
+  </div>`).join('');
+ 
+document.getElementById('helpline-list').innerHTML = helplines.map(h=>`
+  <div class="helpline-item">
+    <div><div class="name">${h.name}</div><div class="sub">${h.sub}</div></div>
+    <a class="num" href="tel:${h.num.replace(/[^0-9]/g,'')}">📞 ${h.num}</a>
+  </div>`).join('');
+ 
+document.getElementById('member-list').innerHTML = members.map(m=>`
+  <div class="member-item">
+    <div><div class="n">${m.name} <span style="color:#c62f2f; font-size:0.78rem;">${m.group}</span></div><div class="r">${m.sub}</div></div>
+    <div class="ok-mark">✓</div>
+  </div>`).join('');
+ 
+/* ---------------- Tabs ---------------- */
+document.querySelectorAll('[data-view]').forEach(el=>{
+  el.addEventListener('click', ()=>{
+    const view = el.dataset.view;
+    document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+    document.getElementById(view).classList.add('active');
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll(`.tab-btn[data-view="${view}"]`).forEach(b=>{
+      if(!b.classList.contains('cta-report')) b.classList.add('active');
+    });
+    document.querySelector('nav.tabs').classList.remove('open');
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+});
+ 
+/* ---------------- Donation copy ---------------- */
+function copyNum(text, btn){
+  navigator.clipboard.writeText(text).then(()=>{
+    const original = btn.textContent;
+    btn.textContent = '✓ কপি হয়েছে';
+    showToast('নম্বরটি কপি করা হয়েছে।');
+    setTimeout(()=>{ btn.textContent = original; }, 1800);
+  }).catch(()=>{
+    showToast(text);
+  });
+}
+ 
+/* ---------------- Forms (static demo) ---------------- */
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2600);
+}
+document.getElementById('issue-form').addEventListener('submit', e=>{
+  e.preventDefault();
+  showToast('ধন্যবাদ! আপনার সমস্যার তথ্য আমরা পেয়েছি — শীঘ্রই যোগাযোগ করা হবে।');
+  e.target.reset();
+});
+document.getElementById('volunteer-form').addEventListener('submit', e=>{
+  e.preventDefault();
+  showToast('ধন্যবাদ! স্বেচ্ছাসেবক পরিবারে আপনাকে স্বাগতম।');
+  e.target.reset();
+});
+</script>
+</body>
+</html>
+ 
