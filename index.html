@@ -428,6 +428,7 @@
       <button class="tab-btn" data-view="donors">রক্তদাতা ডিরেক্টরি</button>
       <button class="tab-btn" data-view="notices">নোটিশ ও সহায়তা</button>
       <button class="tab-btn" data-view="volunteer">স্বেচ্ছাসেবক</button>
+      <button class="tab-btn" data-view="gallery">📷 গ্যালারি</button>
       <button class="tab-btn" data-view="donation">💚 অনুদান</button>
       <button class="tab-btn cta-report" data-view="issues">সমস্যার কথা জানান</button>
     </nav>
@@ -688,6 +689,41 @@
     </div>
   </section>
  
+  <!-- ================= GALLERY ================= -->
+  <section class="view" id="gallery">
+    <div class="section-head">
+      <span class="eyebrow-pill">📷 আমাদের কার্যক্রমের ছবি</span>
+      <h2>কার্যক্রম গ্যালারি</h2>
+      <p>স্বেচ্ছাসেবী কার্যক্রম, চিকিৎসা ক্যাম্প, বৃক্ষরোপণ ও অন্যান্য অনুষ্ঠানের ছবি এখানে যুক্ত করুন এবং দেখুন।</p>
+    </div>
+
+    <div style="background:var(--green-100); border:2px dashed var(--green-700); border-radius:14px; padding:26px; text-align:center; margin-bottom:26px;" id="galleryDropZone">
+      <div style="font-size:2rem; margin-bottom:8px;">🖼️</div>
+      <h3 style="color:var(--green-900); margin:0 0 6px;">ছবি আপলোড করুন</h3>
+      <p style="color:#4a4a4a; font-size:0.9rem; margin:0 0 16px;">ক্লিক করে ছবি বাছাই করুন অথবা এখানে টেনে আনুন (একাধিক ছবি একসাথে যোগ করা যাবে)</p>
+
+      <input type="text" id="galleryCaption" placeholder="ছবির বিবরণ লিখুন (ঐচ্ছিক)" style="width:100%; max-width:420px; padding:10px 14px; border-radius:8px; border:1px solid #ccc; margin-bottom:14px; font-size:0.9rem;">
+      <br>
+      <input type="file" id="galleryFileInput" accept="image/*" multiple style="display:none;">
+      <button class="btn btn-gold" onclick="document.getElementById('galleryFileInput').click()">➕ ছবি বাছাই করুন</button>
+    </div>
+
+    <div id="gallerySlideshow" style="display:none;">
+      <div style="position:relative; background:#111; border-radius:14px; overflow:hidden;">
+        <img id="slideImg" src="" style="width:100%; max-height:480px; object-fit:contain; display:block; background:#111;">
+        <button onclick="prevSlide()" style="position:absolute; top:50%; left:12px; transform:translateY(-50%); background:rgba(0,0,0,0.5); color:#fff; border:none; border-radius:50%; width:42px; height:42px; font-size:1.3rem; cursor:pointer;">‹</button>
+        <button onclick="nextSlide()" style="position:absolute; top:50%; right:12px; transform:translateY(-50%); background:rgba(0,0,0,0.5); color:#fff; border:none; border-radius:50%; width:42px; height:42px; font-size:1.3rem; cursor:pointer;">›</button>
+        <button onclick="deleteCurrentSlide()" style="position:absolute; top:12px; right:12px; background:rgba(198,47,47,0.85); color:#fff; border:none; border-radius:8px; padding:6px 12px; font-size:0.8rem; cursor:pointer;">🗑️ মুছুন</button>
+      </div>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px; flex-wrap:wrap; gap:8px;">
+        <p id="slideCaption" style="color:#333; font-size:0.95rem; margin:0;"></p>
+        <span id="slideCounter" style="color:#888; font-size:0.85rem; white-space:nowrap;"></span>
+      </div>
+      <div id="slideThumbs" style="display:flex; gap:8px; margin-top:14px; overflow-x:auto; padding-bottom:6px;"></div>
+    </div>
+    <p id="galleryEmptyMsg" style="text-align:center; color:#888; margin-top:20px;">এখনও কোনো ছবি যুক্ত করা হয়নি।</p>
+  </section>
+
   <!-- ================= DONATION ================= -->
   <section class="view" id="donation">
     <div class="donate-hero">
@@ -697,11 +733,80 @@
         <p>আপনার সামান্য অনুদান শ্রীকামতা গ্রামের বিনামূল্যে চিকিৎসা ক্যাম্প, বৃক্ষরোপণ, শিক্ষা উপকরণ ও জরুরি রক্তদান কার্যক্রম চালিয়ে যেতে সরাসরি সহায়তা করে। প্রতিটি টাকার হিসাব স্বচ্ছভাবে নোটিশ বোর্ডে জানানো হয়।</p>
       </div>
       <div class="progress-wrap">
-        <div class="progress-labels"><span>সংগৃহীত: ৳১০,৫০০</span><span>লক্ষ্য: ৳১,০০,০০০</span></div>
+        <div class="progress-labels"><span>সংগৃহীত: ৳১২,৫০০</span><span>লক্ষ্য: ৳১,০০,০০০</span></div>
         <div class="progress-track"><div class="progress-fill" style="width:43%;"></div></div>
         <div class="progress-labels"><span>২০২৬ সালের সামাজিক উন্নয়ন ও শিক্ষা তহবিল</span></div>
       </div>
     </div>
+
+    <div class="expense-summary" style="margin-top:16px; background:rgba(255,255,255,0.06); border-radius:12px; padding:16px 20px;">
+      <div class="progress-labels" style="display:flex; justify-content:space-between;">
+        <span style="color:#1a1a1a; font-weight:700;">মোট খরচ হয়েছে: ৳৪,০০০</span>
+        <span style="color:#1a1a1a; font-weight:700;">বর্তমান স্থিতি: ৳৮,৫০০</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" style="width:76%; background:#e07a5f;"></div>
+      </div>
+      <div class="progress-labels">
+        <span style="color:#1a1a1a; font-weight:600;">সংগৃহীত ৳১২,৫০০ থেকে খরচ বাদে অবশিষ্ট তহবিল</span>
+      </div>
+    </div>
+
+    <!-- ================= MONTHLY BREAKDOWN ================= -->
+    <div class="monthly-summary" style="margin-top:24px; background:rgba(255,255,255,0.06); border-radius:12px; padding:20px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
+        <h3 style="margin:0; color:#1f4d3d;">মাসিক আয়-ব্যয়ের হিসাব</h3>
+        <select id="monthSelect" onchange="updateMonthlyView()" style="padding:8px 14px; border-radius:8px; border:1px solid #ccc; background:#fff; color:#1f4d3d; font-weight:600; cursor:pointer;">
+          <!-- options injected by JS -->
+        </select>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+        <div style="background:#eaf6ef; border-radius:10px; padding:16px; text-align:center;">
+          <div style="font-size:14px; color:#3a6b56; margin-bottom:6px;">এই মাসে সংগৃহীত</div>
+          <div id="monthReceived" style="font-size:24px; font-weight:700; color:#1f4d3d;">৳০</div>
+        </div>
+        <div style="background:#fdece7; border-radius:10px; padding:16px; text-align:center;">
+          <div style="font-size:14px; color:#a24a34; margin-bottom:6px;">এই মাসে খরচ</div>
+          <div id="monthSpent" style="font-size:24px; font-weight:700; color:#a24a34;">৳০</div>
+        </div>
+      </div>
+      <div style="margin-top:14px; text-align:center; font-size:14px; color:#4a4a4a;">
+        নিট (আয় - ব্যয়): <span id="monthNet" style="font-weight:700;">৳০</span>
+      </div>
+    </div>
+    <script>
+      // Add/edit monthly records here — key format: "YYYY-MM"
+      const monthlyData = {
+        "2026-08": { received: 8000, spent: 4000 },
+        "2026-09": { received: 4500, spent: 0000 }
+      };
+      const monthNamesBn = ["জানুয়ারি","ফেব্রুয়ারি","মার্চ","এপ্রিল","মে","জুন","জুলাই","আগস্ট","সেপ্টেম্বর","অক্টোবর","নভেম্বর","ডিসেম্বর"];
+      function toBnDigits(num) {
+        const bn = ["০","১","২","৩","৪","৫","৬","৭","৮","৯"];
+        return num.toLocaleString('en-IN').replace(/\d/g, d => bn[d]);
+      }
+      function populateMonthSelect() {
+        const select = document.getElementById('monthSelect');
+        Object.keys(monthlyData).sort().reverse().forEach(key => {
+          const [year, month] = key.split('-');
+          const label = `${monthNamesBn[parseInt(month) - 1]} ${toBnDigits(parseInt(year))}`;
+          const opt = document.createElement('option');
+          opt.value = key;
+          opt.textContent = label;
+          select.appendChild(opt);
+        });
+        updateMonthlyView();
+      }
+      function updateMonthlyView() {
+        const key = document.getElementById('monthSelect').value;
+        const data = monthlyData[key] || { received: 0, spent: 0 };
+        document.getElementById('monthReceived').textContent = `৳${toBnDigits(data.received)}`;
+        document.getElementById('monthSpent').textContent = `৳${toBnDigits(data.spent)}`;
+        document.getElementById('monthNet').textContent = `৳${toBnDigits(data.received - data.spent)}`;
+      }
+      populateMonthSelect();
+    </script>
+  </section>
  
     <div class="section-head">
       <span class="eyebrow-pill">💳 অনুদান পাঠানোর মাধ্যম</span>
@@ -713,16 +818,16 @@
       <div class="donate-card bkash">
         <div class="icon">📱</div>
         <h4>বিকাশ</h4>
-        <div class="num">০১৮২৭-২৪৭২৩২</div>
+        <div class="num">০১৮৭৫-৯৭৮২০৮</div>
         <div class="type">পার্সোনাল নম্বর — "Send Money" করুন</div>
-        <button class="copy-btn" onclick="copyNum('01827247232', this)">নম্বর কপি করুন</button>
+        <button class="copy-btn" onclick="copyNum('01875978208', this)">নম্বর কপি করুন</button>
       </div>
       <div class="donate-card nagad">
         <div class="icon">💰</div>
         <h4>নগদ</h4>
-        <div class="num">০১৮২৭-২৪৭২৩২</div>
+        <div class="num">০১৮৭৫-৯৭৮২০৮</div>
         <div class="type">পার্সোনাল নম্বর — "Send Money" করুন</div>
-        <button class="copy-btn" onclick="copyNum('01827247232', this)">নম্বর কপি করুন</button>
+        <button class="copy-btn" onclick="copyNum('01875978208', this)">নম্বর কপি করুন</button>
       </div>
       <div class="donate-card bank">
         <div class="icon">🏦</div>
@@ -784,8 +889,8 @@ const programs = [
   {icon:"🌳", status:"চলমান", cls:"status-active", title:"পরিচ্ছন্ন শ্রীকামতা ও বৃক্ষরোপণ কর্মসূচি",
    desc:"গ্রামের প্রধান রাস্তাগুলোর দুই পাশে ফলজ, বনজ ও ঔষধি গাছ রোপণ এবং ড্রেনেজ পরিষ্কার-পরিচ্ছন্নতা অভিযান।",
    goal:"লক্ষ্য: ১০০০টি চারা রোপণ"},
-  {icon:"🎓", status:"নিবন্ধন চলছে", cls:"status-open", title:"মেধাবী শিক্ষার্থী সহায়তা ও যুব কম্পিউটার কর্মশালা",
-   desc:"দরিদ্র ও মেধাবী শিক্ষার্থীদের মাঝে শিক্ষা উপকরণ বিতরণ এবং তরুণদের ফ্রিল্যান্সিং ও কম্পিউটার বেসিক প্রশিক্ষণ।",
+  {icon:"🎓", status:"নিবন্ধন চলছে", cls:"status-open", title:"মেধাবী শিক্ষার্থী সহায়তা",
+   desc:"দরিদ্র ও মেধাবী শিক্ষার্থীদের মাঝে শিক্ষা উপকরণ বিতরণ।",
    goal:"লক্ষ্য: ১০০ জন তরুণ-তরুণী"},
   {icon:"🩸", status:"সক্রিয় সেবা", cls:"status-active", title:"২৪/৭ জরুরি রক্তদান নেটওয়ার্ক ও হটলাইন",
    desc:"যে কোনো মুমূর্ষু রোগীর প্রয়োজনে শ্রীকামতা ও পার্শ্ববর্তী এলাকার জন্য তাৎক্ষণিক রক্তদাতার ব্যবস্থা করা।",
@@ -796,33 +901,38 @@ const programs = [
 ];
  
 const issues = [
-  {cat:"রাস্তাঘাট ও সাঁকো", status:"বাস্তবায়ন চলছে", statusCls:"tag-status-progress",
-   title:"শ্রীকামতা পূর্বপাড়া কালভার্ট মেরামত প্রয়োজন",
-   desc:"গত বর্ষায় পূর্বপাড়া সংযোগ ব্রিজের নিচের মাটি সরে গিয়ে যান চলাচলে ঝুঁকি তৈরি হয়েছে। জরুরি মেরামত প্রয়োজন।",
-   loc:"শ্রীকামতা পূর্বপাড়া, সরকারি প্রাথমিক বিদ্যালয়ের নিকট", by:"রফিকুল ইসলাম",
-   response:"ইনসাফ যুব সংঘের স্বেচ্ছাসেবক দল ঘটনাস্থল পরিদর্শন করেছে। ইউনিয়ন পরিষদের সাথে কথা বলে বালুর বস্তা ফেলা হয়েছে এবং দ্রুত পাকাকরণের আবেদন করা হয়েছে।",
+  {cat:"পরিষ্কার পরিচ্ছন্নতা", status:"অনুমতির অপেক্ষায়", statusCls:"tag-status-progress",
+   title:"শ্রীকামতা মসজিদের সামনের মাঠ পরিষ্কার পরিচ্ছন্নতা প্রয়োজন",
+   desc:"অনেকদিন ধরে শ্রীকামতা মসজিদের পূর্ব দিকের মাঠ পরিষ্কার পরিচ্ছন্ন করা হচ্ছে না চলাচলে ঝুঁকি তৈরি হয়েছে। জরুরি আগাছা পরিষ্কার-পরিচ্ছন্ন প্রয়োজন।",
+   loc:"শ্রীকামতা পূর্বপাড়া", by:"রফিকুল ইসলাম",
+   response:"ইনসাফ যুব সংঘের স্বেচ্ছাসেবক দল ঘটনাস্থল পরিদর্শন করেছে। মসজিদ কমিটির সাথে কথা বলা হয়েছে এবং এবং দ্রুততার সহিত পরিষ্কার-পরিচ্ছন্ন করার জন্য মসজিদ কমিটির কাছে অনুমতি আবেদন করা হয়েছে।",
    support:18},
-  {cat:"বিদ্যুৎ ও সড়কবাতি", status:"সমাধান সম্পন্ন", statusCls:"tag-status-done",
-   title:"শ্রীকামতা বাজার মোড়ে নষ্ট সোলার সড়কবাতি প্রতিস্থাপন",
-   desc:"বাজার মোড়ের সোলার বাতিটি গত দুই সপ্তাহ ধরে জ্বলছে না, রাতের বেলা চলাচলে সমস্যা হচ্ছে।",
-   loc:"শ্রীকামতা কেন্দ্রীয় বাজার, তিন রাস্তার মোড়", by:"আবুল করিম",
-   response:"ইনসাফ যুব সংঘের তহবিল থেকে নতুন এলইডি লাইট ও ব্যাটারি মেরামত করে আলো সচল করা হয়েছে।",
+  {cat:"বিদ্যুৎ ও সড়কবাতি", status:"পর্যালোচনাধীন", statusCls:"tag-status-done",
+   title:"শ্রীকামতার নষ্ট সোলার সড়কবাতি প্রতিস্থাপন",
+   desc:"শ্রীকামতার সোলার বাতিগুলো গত তিন-চার মাস ধরে জ্বলছে না, রাতের বেলা চলাচলে সমস্যা হচ্ছে।",
+   loc:"শ্রীকামতা এলাকায়, তিন রাস্তার মোড়", by:"আবুল করিম",
+   response:"ইনসাফ যুব সংঘের তহবিল থেকে নতুন এলইডি লাইট ও ব্যাটারি মেরামত করে আলো সচল করা হবে। এবং আমাদের গ্রামের আরেকটি সংগঠনের সাথে মিলে আমরা এই নষ্ট বাতিগুলো জ্বালানোর ব্যবস্থা করা হবে",
    support:24},
-  {cat:"পানি নিষ্কাশন ও ড্রেনেজ", status:"পর্যালোচনাধীন", statusCls:"tag-status-open",
-   title:"উত্তর পাড়া ড্রেনেজ নিষ্কাশন ব্যবস্থা বন্ধ",
-   desc:"পলিথিন ও ময়লা জমে পানি প্রবাহ বন্ধ হয়ে গেছে। সামান্য বৃষ্টিতেই বাড়ির সামনে জলাবদ্ধতা তৈরি হচ্ছে।",
-   loc:"শ্রীকামতা উত্তর পাড়া, জামে মসজিদ সংলগ্ন সড়ক", by:"মো: জামিল হোসেন",
-   response:"আগামী শুক্রবার যুব সংঘের পক্ষ থেকে পরিচ্ছন্নতা অভিযান পরিচালনা করা হবে।",
-   support:9}
+  {cat:"পরিবেশ ও জনকল্যাণ", status:"পর্যালোচনাধীন", statusCls:"tag-status-open",
+   title:"গ্রামের চারটি কবরস্থান পরিষ্কার-পরিচ্ছন্নতা কর্মসূচি",
+   desc:"গ্রামের চারটি কবরস্থানে আগাছা, জঙ্গল ও আবর্জনা জমে চলাচলের পথ অনুপযোগী হয়ে পড়েছে। এগুলো দ্রুত পরিষ্কার-পরিচ্ছন্ন করা প্রয়োজন।",
+   loc:"গ্রামের সকল কবরস্থান এলাকা", by:"গ্রামবাসীর পক্ষে",
+   response:"স্থানীয় স্বেচ্ছাসেবী ও যুবকদের সমন্বয়ে দ্রুত পরিষ্কার অভিযান পরিচালনার উদ্যোগ নেওয়া হচ্ছে।",
+   support:9},
+   
 ];
  
 const donors = [
-  {name:"রহমান", group:"O+", loc:"শ্রীকামতা মধ্যপাড়া", date:"২০২৬-০৬-১৫"},
-  {name:"শফিকুল ইসলাম সুমন", group:"A+", loc:"শ্রীকামতা পূর্বপাড়া", date:"২০২৬-০৫-১০"},
-  {name:"নাজমুল হোসেন", group:"B+", loc:"শ্রীকামতা বাজার রোড", date:"২০২৬-০৭-২০"},
-  {name:"মেহেদী হাসান শুভ", group:"AB+", loc:"শ্রীকামতা দক্ষিণপাড়া", date:"২০২৬-০৪-০১"},
-  {name:"কবিরুল আলম", group:"O-", loc:"শ্রীকামতা উত্তরপাড়া", date:"২০২৬-০৫-২৫"},
-  {name:"তানভীর আহমেদ", group:"B+", loc:"শ্রীকামতা পশ্চিমপাড়া", date:"২০২৬-০৬-০২"}
+  {name:"জাহিদ হোসাইন", group:"O+", loc:"শ্রীকামতা মধ্যপাড়া", date:"২০২৬-০৬-১৫"},
+  {name:"রিফাত হোসাইন", group:"A+", loc:"শ্রীকামতা পূর্বপাড়া", date:"২০২৬-০৫-১০"},
+  {name:"সৌরভ", group:"AB+", loc:"শ্রীকামতা উত্তরপাড়া", date:"২০২৬-০৭-২০"},
+  {name:"মোহাম্মদ সাইফ", group:"AB+", loc:"শ্রীকামতা দক্ষিণপাড়া", date:"২০২৬-০৪-০১"},
+  {name:"শিহাব", group:"A+", loc:"শ্রীকামতা উত্তরপাড়া", date:"২০২৬-০৫-২৫"},
+  {name:"তামিম", group:"AB+", loc:"শ্রীকামতা পশ্চিমপাড়া", date:"২০২৬-০৬-০২"},
+  {name:"সৈকত (পরানপুর)", group:"O+", loc:"শ্রীকামতা উত্তরপাড়া", date:"২০২৬-০৫-২৫"},
+  {name:"জিসান", group:"O+", loc:"শ্রীকামতা মধ্যপাড়া", date:"২০২৬-০৫-২২"},
+  {name:"রাকিব", group:"O+", loc:"শ্রীকামতা উত্তরপাড়া", date:"২০২৬-০২-০৭"},
+  {name:"আব্দুল মমিন", group:"A+", loc:"শ্রীকামতা পশ্চিমপাড়া", date:"২০২৬-০৬-০৭"}
 ];
  
 const notices = [
@@ -830,8 +940,8 @@ const notices = [
    title:"শ্রীকামতা ইনসাফ যুব সংঘের সাধারণ সভা ও কর্মী সম্মেলন",
    desc:"গ্রামের সার্বিক উন্নয়ন পরিকল্পনা ও নতুন কমিটির দায়িত্ব বণ্টন বিষয়ে সকল সদস্য ও শুভাকাঙ্ক্ষীদের উপস্থিত থাকার জন্য বিনীত অনুরোধ করা হচ্ছে।"},
   {cat:"উন্নয়ন", cls:"cat-dev", date:"চলতি সপ্তাহ",
-   title:"গ্রামের ভাঙা রাস্তা ও সাঁকো সংক্রান্ত তথ্য সংগ্রহ চলছে",
-   desc:"যে কোনো পাড়ার চলাচলের অসুবিধা কিংবা ঝুঁকিপূর্ণ কালভার্টের ছবি ও বিবরণ অ্যাপের 'সমস্যার কথা জানান' সেকশনে জমা দিন।"},
+   title:"গ্রামের ভাঙা রাস্তা সংক্রান্ত তথ্য সংগ্রহ চলছে",
+   desc:"যে কোনো পাড়ার চলাচলের অসুবিধা কিংবা ঝুঁকিপূর্ণ রাস্তার ছবি ও বিবরণ অ্যাপের 'সমস্যার কথা জানান' সেকশনে জমা দিন।"},
   {cat:"স্বাস্থ্য", cls:"cat-health", date:"সার্বক্ষণিক",
    title:"জরুরি প্রয়োজনে রক্তদান হটলাইন সার্বক্ষণিক সচল",
    desc:"হাসপাতালে রক্তের প্রয়োজনে যেকোনো গ্রুপের রক্তের জন্য আমাদের রক্তদাতা ডিরেক্টরি দেখুন অথবা সরাসরি যুব সংঘের হোয়াটসঅ্যাপে মেসেজ দিন।"}
@@ -938,6 +1048,107 @@ document.getElementById('member-list').innerHTML = members.map(m=>`
     <div class="ok-mark">✓</div>
   </div>`).join('');
  
+/* ---------------- Gallery ---------------- */
+const GALLERY_KEY = 'skys_gallery_photos';
+
+function loadGallery(){
+  try{ return JSON.parse(localStorage.getItem(GALLERY_KEY)) || []; }
+  catch(e){ return []; }
+}
+function saveGallery(photos){
+  localStorage.setItem(GALLERY_KEY, JSON.stringify(photos));
+}
+let currentSlide = 0;
+
+function renderGallery(){
+  const photos = loadGallery();
+  const slideshow = document.getElementById('gallerySlideshow');
+  const emptyMsg = document.getElementById('galleryEmptyMsg');
+  if(!photos.length){
+    slideshow.style.display = 'none';
+    emptyMsg.style.display = 'block';
+    return;
+  }
+  emptyMsg.style.display = 'none';
+  slideshow.style.display = 'block';
+  if(currentSlide >= photos.length) currentSlide = photos.length - 1;
+  if(currentSlide < 0) currentSlide = 0;
+  showSlide(currentSlide);
+}
+function showSlide(index){
+  const photos = loadGallery();
+  if(!photos.length) return;
+  currentSlide = ((index % photos.length) + photos.length) % photos.length;
+  const p = photos[currentSlide];
+  document.getElementById('slideImg').src = p.src;
+  document.getElementById('slideCaption').textContent = p.caption || '';
+  document.getElementById('slideCounter').textContent = `${currentSlide + 1} / ${photos.length}`;
+  document.getElementById('slideThumbs').innerHTML = photos.map((ph, i) => `
+    <img src="${ph.src}" onclick="showSlide(${i})" style="width:64px; height:64px; object-fit:cover; border-radius:8px; cursor:pointer; flex-shrink:0; border:2px solid ${i === currentSlide ? 'var(--gold)' : 'transparent'}; opacity:${i === currentSlide ? '1' : '0.7'};">
+  `).join('');
+}
+function nextSlide(){ showSlide(currentSlide + 1); }
+function prevSlide(){ showSlide(currentSlide - 1); }
+function deleteCurrentSlide(){
+  const photos = loadGallery();
+  if(!photos.length) return;
+  photos.splice(currentSlide, 1);
+  saveGallery(photos);
+  showToast('ছবি মুছে ফেলা হয়েছে।');
+  renderGallery();
+}
+function addPhotos(files, caption){
+  const photos = loadGallery();
+  let remaining = files.length;
+  if(!remaining) return;
+  Array.from(files).forEach(file=>{
+    const reader = new FileReader();
+    reader.onload = e=>{
+      photos.push({
+        src: e.target.result,
+        caption: caption || '',
+        date: new Date().toLocaleDateString('bn-BD')
+      });
+      remaining--;
+      if(remaining === 0){
+        saveGallery(photos);
+        currentSlide = photos.length - 1;
+        renderGallery();
+        showToast('ছবি সফলভাবে যুক্ত হয়েছে।');
+      }
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+document.getElementById('galleryFileInput').addEventListener('change', function(){
+  addPhotos(this.files, document.getElementById('galleryCaption').value.trim());
+  this.value = '';
+  document.getElementById('galleryCaption').value = '';
+});
+
+const dropZone = document.getElementById('galleryDropZone');
+['dragover','dragenter'].forEach(evt=>{
+  dropZone.addEventListener(evt, e=>{ e.preventDefault(); dropZone.style.background = 'rgba(15,92,64,0.15)'; });
+});
+['dragleave','drop'].forEach(evt=>{
+  dropZone.addEventListener(evt, e=>{ e.preventDefault(); dropZone.style.background = ''; });
+});
+dropZone.addEventListener('drop', e=>{
+  e.preventDefault();
+  const files = Array.from(e.dataTransfer.files).filter(f=>f.type.startsWith('image/'));
+  addPhotos(files, document.getElementById('galleryCaption').value.trim());
+  document.getElementById('galleryCaption').value = '';
+});
+
+renderGallery();
+
+document.addEventListener('keydown', e=>{
+  if(!document.getElementById('gallery').classList.contains('active')) return;
+  if(e.key === 'ArrowRight') nextSlide();
+  if(e.key === 'ArrowLeft') prevSlide();
+});
+
 /* ---------------- Tabs ---------------- */
 document.querySelectorAll('[data-view]').forEach(el=>{
   el.addEventListener('click', ()=>{
@@ -985,4 +1196,3 @@ document.getElementById('volunteer-form').addEventListener('submit', e=>{
 </script>
 </body>
 </html>
- 
